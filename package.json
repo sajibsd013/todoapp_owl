@@ -25,20 +25,26 @@
     "webpack-dev-server": "^3.10.2"
   },
   "dependencies": {
-    "@odoo/owl": "^1.0.4"
+    "@odoo/owl": "^2.2.7"
   },
   "babel": {
-    "plugins": ["@babel/plugin-proposal-class-properties"],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ],
     "env": {
       "test": {
-        "plugins": ["transform-es2015-modules-commonjs"]
+        "plugins": [
+          "transform-es2015-modules-commonjs"
+        ]
       }
     }
   },
   "jest": {
     "verbose": false,
     "testRegex": "(/tests/.*(test|spec))\\.js?$",
-    "moduleFileExtensions": ["js"],
+    "moduleFileExtensions": [
+      "js"
+    ],
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     }

@@ -560,10 +560,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@odoo/owl@^1.0.4":
-  version "1.4.11"
-  resolved "https://registry.yarnpkg.com/@odoo/owl/-/owl-1.4.11.tgz#8425da18d7861c2bc6572a91a8c4466f4da98cbf"
-  integrity sha512-oVN/RcUrRjsCzl5KBrLj9guGsenr4mZrMro1gr2Bb9xki0rUOqsjtiqGMf37YnFv8Rt4XA7t48RazEBUKdMYDg==
+"@odoo/owl@^2.2.7":
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/@odoo/owl/-/owl-2.2.7.tgz#998aeab59a64488ce28087f90f7b0cf1419499c4"
+  integrity sha512-T/qE/Vz4rLOkr8jKKLx+sP/YGktZflolIEp6lOXO76m/MWQJhQsRXp1YGa47fbuudmUbxEswFi6BzZO8Ei0wog==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.6"

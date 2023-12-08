@@ -12,6 +12,3 @@ export class Root extends Component {
     this.state.text = this.state.text === "Owl" ? "World" : "Owl";
   }
 }
-
-
-mount(Root, document.body);

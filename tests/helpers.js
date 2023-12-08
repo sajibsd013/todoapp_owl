@@ -1,4 +1,3 @@
-
 // tests/helpers.js ------------------------------------------------------------
 import { Component } from "@odoo/owl";
 import "regenerator-runtime/runtime";

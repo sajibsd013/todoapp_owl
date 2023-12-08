@@ -1,4 +1,3 @@
-
 // tests/components/Root.test.js ------------------------------------------------
 import { Root } from "../../src/components/Root";
 import { makeTestFixture, nextTick, click } from "../helpers";
