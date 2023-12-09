@@ -1,0 +1,69 @@
+<templates>
+  <div t-name="Todo" class="container">
+    <div class="col-md-7 mx-auto my-5 p-4 shadow-sm border">
+      <div class="d-flex justify-content-between">
+        <h5 class="mb-3">ToDo List</h5>
+        <div class="">
+          <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Add New
+          </button>
+
+        </div>
+      </div>
+      <ul class="list-group">
+        <t t-foreach="state.tasks" t-as="task" t-key="task_index">
+          <div class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <div class="">
+                <input class="form-check-input me-2" type="checkbox"
+                  t-att-checked="task.isCompleted"
+                  t-on-click="()=> toggleTask(task_index)" />
+                <span t-att-class="task.isCompleted ? 'text-decoration-line-through' : ''">
+                  <t t-esc="task.name" />
+                </span>
+              </div>
+              <div class="">
+                <button type="button" class="btn btn-danger btn-sm" t-on-click="()=> deleteTask(task_index)" >
+                  Delete
+                  <i class="bi bi-arrow-down-right-circle-fill"></i>
+                </button>
+      
+              </div>
+            </div>
+          </div>
+
+        </t>
+      </ul>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">New Task</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Enter Task name</label>
+              <input class="form-control " t-model="state.task.name" />
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" t-on-click="addTask">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <t t-name="Root">
+    <Todo />
+  </t>
+</templates>
