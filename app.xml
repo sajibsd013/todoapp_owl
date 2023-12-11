@@ -12,19 +12,19 @@
         </div>
       </div>
       <ul class="list-group">
-        <t t-foreach="state.tasks" t-as="task" t-key="task_index">
+        <t t-foreach="state.tasks" t-as="task" t-key="task.id">
           <div class="list-group-item">
             <div class="d-flex justify-content-between">
               <div class="">
                 <input class="form-check-input me-2" type="checkbox"
                   t-att-checked="task.isCompleted"
-                  t-on-click="()=> toggleTask(task_index)" />
+                  t-on-click="()=> toggleTask(task)" />
                 <span t-att-class="task.isCompleted ? 'text-decoration-line-through' : ''">
                   <t t-esc="task.name" />
                 </span>
               </div>
               <div class="">
-                <button type="button" class="btn btn-danger btn-sm" t-on-click="()=> deleteTask(task_index)" >
+                <button type="button" class="btn btn-danger btn-sm" t-on-click="()=> deleteTask(task.id)" >
                   Delete
                   <i class="bi bi-arrow-down-right-circle-fill"></i>
                 </button>

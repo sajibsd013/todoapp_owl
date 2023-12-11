@@ -1,43 +1,74 @@
 const TEMPLATES = await (await fetch("app.xml")).text();
 // In this example, we show how components can be defined and created.
-import { Component, useState, mount } from "@odoo/owl";
+import { Component, useState, mount, onWillStart } from "@odoo/owl";
 
 // Todo Component
 class Todo extends Component {
   static template = "Todo";
-  toggleTask = (task_index) => {
-    this.state.tasks[task_index].isCompleted =
-      !this.state.tasks[task_index].isCompleted;
+  toggleTask = (task) => {
+    // this.state.tasks[task_index].isCompleted =
+    //   !this.state.tasks[task_index].isCompleted;
+    task.isCompleted = !task.isCompleted;
+    fetch(`http://localhost:3000/tasks/${task.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    })
+      .then((x) => x.json())
+      .then((y) => this.loadData());
   };
-  deleteTask = (task_index) => {
-    this.state.tasks = this.state.tasks.filter(
-      (task, index) => index != task_index
-    );
+  deleteTask = (taskId) => {
+    // this.state.tasks = this.state.tasks.filter(
+    //   (task) => task.id != taskId
+    // );
+    fetch(`http://localhost:3000/tasks/${taskId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      
+    })
+      .then((x) => x.json())
+      .then((y) => this.loadData());
   };
   addTask = () => {
-    this.state.tasks.push({...this.state.task})
-    this.state.task.name = "New Task"
+    // this.state.tasks.push({ ...this.state.task });
+    // this.state.task.name = "New Task";
+    fetch(`http://localhost:3000/tasks/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(this.state.task),
+    })
+      .then((x) => x.json())
+      .then((y) => this.loadData());
+
+    this.state.task.name = "";
+  };
+  loadData = () => {
+    fetch("http://localhost:3000/tasks/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((x) => x.json())
+      .then((y) => (this.state.tasks = y));
   };
   setup() {
     this.state = useState({
       task: {
-        name: "New Task",
+        name: "",
         isCompleted: false,
       },
-      tasks: [
-        {
-          name: "Task 1",
-          isCompleted: true,
-        },
-        {
-          name: "Task 2",
-          isCompleted: false,
-        },
-        {
-          name: "Task 3",
-          isCompleted: false,
-        }
-      ],
+      tasks: [],
+    });
+
+    onWillStart(() => {
+      this.loadData();
     });
   }
 }
